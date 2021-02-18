@@ -1,0 +1,90 @@
+/*===============
+Main course table
+================*/
+/*.user-admin-dashboard{*/
+/*    margin: 1rem auto;*/
+/*    display: block;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+.user-admin-dashboard h1, h2{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.course-table{
+    padding: 0.75rem;
+    /*box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, .1);*/
+    /*border-radius: 15px;*/
+    /*background-color: rgba(255,255,255,0.05);*/
+}
+.btn-group {
+    display: flex;
+    justify-content: space-around;
+}
+.main-table {
+    display: flex;
+    justify-content: center;
+}
+hr {
+    margin: 1.5rem 0;
+}
+th, td{
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+    justify-content: center;
+}
+th {
+    font-size: 18px;
+}
+.form-control {
+    padding: .3rem .5rem;
+}
+button{
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+}
+button:hover{
+    color: var(--color-light);
+}
+@media screen and (max-width: 1225px){
+    .priority-5{
+        display:none;
+    }
+}
+@media screen and (max-width: 835px) {
+    .priority-5{
+        display:none;
+    }
+    .priority-4{
+        display:none;
+    }
+}
+@media screen and (max-width: 565px) {
+    .priority-5{
+        display:none;
+    }
+    .priority-4{
+        display:none;
+    }
+    .priority-3{
+        display:none;
+    }
+}
+@media screen and (max-width: 300px) {
+    .priority-5{
+        display:none;
+    }
+    .priority-4{
+        display:none;
+    }
+    .priority-3{
+        display:none;
+    }
+    .priority-2{
+        display:none;
+    }
+
+}
