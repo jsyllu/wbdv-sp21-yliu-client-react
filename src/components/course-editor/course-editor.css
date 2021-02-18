@@ -1,0 +1,313 @@
+/*=================
+Main Course Editor
+====================*/
+.editor {
+    margin: 1rem auto;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+.editor-container{
+    padding: 3rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0.3rem 0.3rem 0.75rem rgba(0, 0, 0, .15);
+}
+.editor h1{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.editor-header{
+    margin-bottom: 1.5rem;
+}
+.editor-header-title{
+    display: flex;
+    align-items: end;
+}
+.course-info{
+    display: block;
+    padding: 0 1rem;
+}
+.course-info .course-title i{
+    margin-left: 0.3rem;
+    cursor: pointer;
+}
+.course-info .course-title i:hover{
+    color: rgba(255,255,255,0.7);
+}
+.course-info .course-id{
+    position: relative;
+    margin-bottom: 0;
+}
+.editor-header-title .back-icon{
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    text-decoration: none;
+    color: inherit;
+    padding: 0.4rem 0;
+}
+.editor-header-title .back-icon:hover{
+    animation: bounceleft 0.3s alternate ease infinite;
+}
+@keyframes bounceleft {
+    from { transform: translateX(-3px); }
+    to   { transform: translateX(0); }
+}
+@-webkit-keyframes bounceleft {
+    from { -webkit-transform: translateX(-3px); }
+    to   { -webkit-transform: translateX(0); }
+}
+
+/*=========
+Lesson
+==========*/
+.editor-header-lesson {
+    display: flex;
+    justify-content: left;
+    align-items: end;
+    padding-bottom: 0.5rem;
+}
+.editor-header-lesson .nav-link{
+    margin: 0 0.5rem 0 0;
+    padding: 1px 0.75rem 0 0.75rem;
+    background: transparent;
+    border: 2px solid transparent;
+}
+.editor-header-lesson .nav-link.active{
+    border: 2px solid white;
+    border-bottom-style: inherit;
+    background: transparent;
+}
+.editor-header-lesson .nav-link.active:hover{
+    border: 2px solid white;
+    border-bottom-style: inherit;
+    cursor: default;
+}
+.editor-header-lesson a{
+    text-decoration: none;
+    color: inherit;
+}
+.editor-header-lesson i:hover{
+    cursor: pointer;
+    color: white;
+}
+
+/*=======
+Modules
+=========*/
+.modules{
+    padding: 0 1rem;
+}
+.modules .list-group{
+    border-radius: 15px;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+}
+.modules .list-group-item{
+    background: rgba(255,255,255,0.1);
+    padding: 1rem;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    cursor: pointer;
+}
+.modules .list-group-item:last-child{
+    border: none;
+}
+.modules .list-group-item.active{
+    background: rgba(255,255,255,0.7);
+    color: inherit;
+    border: none;
+}
+.modules .list-group-item:hover{
+    background: rgba(255,255,255,0.3);
+    color: inherit;
+}
+.modules .list-group-item i{
+    position: relative;
+    float: right;
+}
+.modules .list-group-item input{
+    color: inherit;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.7);
+    overflow: hidden;
+}
+.modules .list-group-item input:focus{
+    background: none;
+    outline: none;
+    box-shadow: 0 0.1rem 0.1rem rgba(0,0,0,0.2);
+}
+.modules i:hover{
+    cursor: pointer;
+    color: white;
+}
+
+/*======
+Topic
+=======*/
+.topics{
+    display: block;
+    justify-content: left;
+    text-align: center;
+    align-items: start;
+}
+.topics .nav-pills{
+    display: flex;
+    justify-content: left;
+    margin: 0.5rem 0;
+}
+.topics .nav-link{
+    background: transparent;
+    border-radius: 15px;
+    box-shadow: 0.5rem 0.5rem 0.75rem rgba(0,0,0,0.3);
+    text-align: center;
+    color: white;
+    padding: 0.25rem 0.85rem;
+}
+.topics .nav-link.active{
+    background: rgba(255,255,255,0.7);
+    color: inherit;
+}
+.topics .nav-link:hover{
+    box-shadow: 0.3rem 0.3rem 0.5rem rgba(0,0,0,0.2);
+}
+.topic-btn-group{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+}
+.topic-btn-group button,
+.topic-preview {
+    width: auto;
+}
+.topic-btn-group button{
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    border-color: var(--color-dark)!important;
+    color: var(--color-dark)!important;
+}
+.topic-btn-group button:hover,
+.topic-btn-group button:focus,
+.topic-btn-group button:active{
+    background: var(--color-mid)!important;
+    border-color: var(--color-mid)!important;
+    outline: none!important;
+    color: white!important;
+    transition: 0.2s ease-in-out;
+}
+.topic-preview p{
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+.topic-preview i{
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    padding: 0.2rem 0.2rem 0.2rem 0.5rem;
+    cursor: pointer;
+}
+
+/*=============
+Widget Group
+==============*/
+.widget-group{
+    margin: 1rem 0;
+    display: block;
+}
+.widget{
+    display: block;
+    text-align: left;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+.widget-header {
+    text-align: left;
+    width: auto;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+.widget-type-title{
+    width: inherit;
+}
+.widget-header-right{
+    margin-left: auto;
+    width: auto;
+}
+.widget-type-select,
+.widget-content,
+.widget-type-detail-select,
+.widget-name{
+    border-radius: 5px;
+    color: inherit;
+    background: transparent;
+    border: 2px solid white;
+    padding: 0.15rem 0.5rem;
+}
+.widget-type-select {
+    width: inherit;
+    margin: 0 0.5rem;
+}
+.widget-type-select option{
+    color: inherit;
+    border-radius: 5px;
+    background: transparent;
+    border: 2px solid white;
+}
+.widget-position-icon,
+.widget-delete-icon{
+    text-decoration: none;
+    color: white;
+    width: inherit;
+    border-radius: 5px;
+    padding: 0.3rem;
+}
+.widget-position-icon:hover,
+.widget-delete-icon:hover{
+    color: inherit;
+}
+.widget-content,
+.widget-type-detail-select,
+.widget-name{
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+.widget-content,
+.widget-name{
+    height: 2.5rem;
+}
+.widget-type-select:focus,
+.widget-content:focus,
+.widget-type-detail-select:focus,
+.widget-name:focus{
+    box-shadow: 0.3rem 0.3rem 0.75rem rgba(0,0,0,0.2);
+}
+.widget-preview{
+    display: block;
+    text-align: left;
+}
+.new-widget-icon{
+    float: right;
+    margin: 1rem 0;
+    padding: 0;
+    width: inherit;
+    text-align: right;
+}
+.new-widget-icon a{
+    text-decoration: none;
+    color: var(--color-dark);
+}
+.new-widget-icon i{
+    padding: 2rem 0;
+    color: white;
+}
+.new-widget-icon i:hover{
+    color: var(--color-mid);
+    transform: scale(1.5);
+    transition: all 0.3s ease-in-out;
+}
