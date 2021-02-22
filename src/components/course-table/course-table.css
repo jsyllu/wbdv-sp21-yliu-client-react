@@ -22,6 +22,9 @@ Main course table
     display: flex;
     justify-content: space-around;
 }
+.new-course-form {
+    margin-bottom: 2rem;
+}
 .main-table {
     display: flex;
     justify-content: center;
@@ -37,8 +40,15 @@ th, td{
 th {
     font-size: 18px;
 }
-.form-control {
-    padding: .3rem .5rem;
+.form-control,
+.form-control:focus {
+    background: none;
+    outline: 0;
+    border: 0;
+    border-bottom: solid 1.5px var(--color-font-dark);
+    border-radius: 0;
+    padding: 0;
+    height: auto;
 }
 button{
     color: inherit;
