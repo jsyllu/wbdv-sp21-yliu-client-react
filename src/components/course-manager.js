@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import './course-manager.css'
 import CourseTable from "./course-table/course-table";
 import CourseGrid from "./course-grid/course-grid";
 import {Route} from "react-router-dom";
+import DeleteCourseDialog from "./delete-course-dialog";
 import CourseService, {findAllCourses, createCourse, deleteCourse, updateCourse} from "../services/course-service";
 
 
@@ -140,6 +141,7 @@ class CourseManager extends React.Component {
         return (
             <div className="dashboard container">
                 <h1>Course Manager (Faculty View)</h1>
+                <DeleteCourseDialog/>
                 <div class="new-course-title-form">
                     <input className="form-control"
                            type="text"
