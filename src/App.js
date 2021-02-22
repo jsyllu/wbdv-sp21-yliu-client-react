@@ -6,6 +6,7 @@ import './App.css'
 import {BrowserRouter} from "react-router-dom";
 import {Route} from "react-router-dom";
 import CourseEditor from "./components/course-editor/course-editor";
+import Home from './components/home/home'
 
 function App() {
     return (
@@ -13,15 +14,15 @@ function App() {
             <Helmet>
                 <title>EconStudio | Course Manager</title>
             </Helmet>
-            <Header />
             <BrowserRouter>
+                <Header />
+                <Route path="/" exact={true} component={Home}/>
                 <Route path="/courses"
                        component={CourseManager} />
                 <Route path="/editor"
                        render={(props) => <CourseEditor {...props} />} />
-                <Footer />
-
             </BrowserRouter>
+            <Footer />
         </div>
     );
 }
