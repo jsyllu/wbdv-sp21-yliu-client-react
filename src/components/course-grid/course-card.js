@@ -12,8 +12,10 @@ const CourseCard = ({course, deleteCourse, updateCourse}) => {
             ...course,
             title: title
         }
-        console.log(newCourse)
         updateCourse(newCourse)
+        // reset input fields
+        setEditing(false)
+        setTitle(course.title)
     }
 
     return (

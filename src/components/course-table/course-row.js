@@ -20,6 +20,13 @@ const CourseRow = ({course, deleteCourse, updateCourse}) => {
             lastModified: lastModified
         }
         updateCourse(newCourse)
+        // reset input fields
+        setEditing(false)
+        setNumber(course.number)
+        setTitle(course.title)
+        setOwner(course.owner)
+        setTerm(course.term)
+        setLastModified(course.lastModified)
     }
 
     return (
