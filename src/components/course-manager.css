@@ -11,6 +11,15 @@ Main Dashboard
     text-align: center;
     margin-bottom: 2rem;
 }
+.new-course-title-form {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2rem;
+}
+.new-course-title-form input{
+    margin-right: 1rem;
+    width: inherit;
+}
 
 /*====================
 Enrollment Section
