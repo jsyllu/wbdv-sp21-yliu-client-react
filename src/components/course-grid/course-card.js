@@ -7,18 +7,21 @@ const CourseCard = ({course, deleteCourse, updateCourse}) => {
     const [title, setTitle] = useState(course.title)
 
     const saveCourse = () => {
-        console.log("click edit")
         setEditing(false)
         const newCourse = {
             ...course,
             title: title
         }
+        console.log(newCourse)
         updateCourse(newCourse)
     }
 
     return (
         <div className="course-card col-lg-6 col-xl-4">
             <div>
+                <button onClick={() => deleteCourse(course)}>
+                    <i className="fas fa-trash-alt fa-lg"></i>
+                </button>
                 {
                     editing &&
                     <button onClick={() => saveCourse()}
@@ -33,9 +36,6 @@ const CourseCard = ({course, deleteCourse, updateCourse}) => {
                         <i className="fas fa-edit fa-lg"></i>
                     </button>
                 }
-                <button onClick={() => deleteCourse(course)}>
-                    <i className="fas fa-trash-alt fa-lg"></i>
-                </button>
             </div>
             <div>
                 <figure className="img-caption">

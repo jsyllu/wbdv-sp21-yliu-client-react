@@ -4,7 +4,7 @@ New Course Card
 .card-img{
     display: block;
     max-width: 100%;
-    height: 240px;
+    height: 260px;
     object-fit: cover;
     border-radius: 15px;
     background-image: linear-gradient(62deg, #E0C3FC 0%, #8EC5FC  100%);
@@ -27,8 +27,8 @@ New Course Card
     position: relative;
     max-width: 520px;
     width: 400px;
-    height: 240px;
-    margin-bottom: 4rem;
+    height: 250px;
+    margin-bottom: 5rem;
     padding: 1.5rem;
     border-radius: 10px;
     line-height: 200%;
@@ -61,21 +61,16 @@ New Course Card
     padding: 0;
     margin: 0;
     color: #fff;
-    box-shadow: 0.3rem 0.3rem 0.75rem rgba(0, 0, 0, .15);
+    box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, .4);
     border-radius: 15px;
     transition: all 0.2s ease-in-out;
 }
 
 .img-caption:hover {
-    box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, .4);
-    transform: scale(1.1, 1.1);
-    -webkit-transform: scale(1.1, 1.1);
+    box-shadow: 0.3rem 0.3rem 0.75rem rgba(0, 0, 0, .15);
+    /*transform: scale(1.1, 1.1);*/
+    /*-webkit-transform: scale(1.1, 1.1);*/
 }
-
-.img-caption:hover:after {
-    /*opacity: 1;*/
-}
-
 .img-caption .card-img {
     display: block;
     max-width: 100%;
@@ -105,9 +100,31 @@ New Course Card
 }
 .go-icon, .new-icon {
     position: absolute;
-    bottom: 10%;
+    bottom: 15%;
     right: 10%;
 }
+.go-icon{
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    text-decoration: none;
+    color: inherit;
+    padding: 0.4rem 0;
+}
+.go-icon:hover{
+    animation: bounceleft 0.3s alternate ease infinite;
+}
+@keyframes bounceleft {
+    from { transform: translateX(-3px); }
+    to   { transform: translateX(0); }
+}
+@-webkit-keyframes bounceleft {
+    from { -webkit-transform: translateX(-3px); }
+    to   { -webkit-transform: translateX(0); }
+}
+
+
 a, a:hover{
     color: inherit;
 }
@@ -129,10 +146,13 @@ a, a:hover{
     position: absolute;
     width: 80%;
     background: transparent;
-    outline: none;
-    border-bottom: solid 2px white;
     color: inherit;
     font: inherit;
     padding: 0 0.2rem;
     height: auto;
+    border: 0;
+    outline: 0;
+    border-bottom: solid 2px white;
+    border-radius: 0;
+    padding: 0;
 }
