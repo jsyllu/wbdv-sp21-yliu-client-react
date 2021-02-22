@@ -20,7 +20,7 @@ const DeleteCourseDialog = ({course}) => {
     return (
         <div>
             <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Open alert dialog
+                Test - Delete Alert Dialog
             </Button>
             <Dialog
                 open={open}
@@ -31,7 +31,7 @@ const DeleteCourseDialog = ({course}) => {
                 <DialogTitle id="alert-dialog-title">{"Delete this course?"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        {course.title + " - " + course.term}
+                        {'course.title' + " - " + 'course.term'}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
