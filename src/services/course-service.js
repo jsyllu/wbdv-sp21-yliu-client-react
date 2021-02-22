@@ -5,6 +5,12 @@ export const findAllCourses = () =>
     fetch(COURSES_URL)
         .then(response => response.json())
 
+// GET - find course by id, return a course object matched the id
+export const findCourseById = (courseId) => {
+    fetch(`${COURSES_URL}/${courseId}`)
+        .then(response => response.json())
+}
+
 // POST - create a course and add to server, return new course stored in the server
 export const createCourse = (course) =>
     fetch(COURSES_URL, {
