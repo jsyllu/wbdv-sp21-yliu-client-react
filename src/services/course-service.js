@@ -6,10 +6,9 @@ export const findAllCourses = () =>
         .then(response => response.json())
 
 // GET - find course by id, return a course object matched the id
-export const findCourseById = (courseId) => {
+export const findCourseById = (courseId) =>
     fetch(`${COURSES_URL}/${courseId}`)
         .then(response => response.json())
-}
 
 // POST - create a course and add to server, return new course stored in the server
 export const createCourse = (course) =>
@@ -41,10 +40,7 @@ export const updateCourse = (courseId, course) =>
         .then(response => response.json())
 
 const course_api = {
-    findAllCourses: findAllCourses,
-    createCourse: createCourse,
-    deleteCourse: deleteCourse,
-    updateCourse: updateCourse
+    findAllCourses, findCourseById, createCourse, deleteCourse, updateCourse
 }
 
 export default course_api;
