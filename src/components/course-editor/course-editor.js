@@ -6,9 +6,9 @@ import './course-editor.style.client.css';
 import moduleReducer from '../../reducers/module-reducer';
 import lessonReducer from "../../reducers/lesson-reducer";
 import topicReducer from "../../reducers/topic-reducer";
-import ModuleList from './modules/module-list';
-import LessonTab from "./modules/lesson-tab";
-import TopicPill from "./modules/topic-pill";
+import ModuleList from './module-list';
+import LessonTab from "./lesson-tab";
+import TopicPill from "./topic-pill";
 import courseService from "../../services/course-service";
 import Helmet from "react-helmet";
 

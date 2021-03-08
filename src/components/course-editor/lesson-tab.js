@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import EditableItem from "../../editable-item/editable-item"
+import EditableItem from "../editable-item/editable-item"
 import {useParams} from 'react-router-dom'
-import lessonService from '../../../services/lesson-service'
+import lessonService from '../../services/lesson-service'
 
 const LessonTab = (
     {

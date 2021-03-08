@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {connect, Provider} from 'react-redux'
-import EditableItem from "../../editable-item/editable-item"
+import EditableItem from "../editable-item/editable-item"
 import {useParams} from 'react-router-dom'
-import topicService from '../../../services/topic-service'
+import topicService from '../../services/topic-service'
 
 const TopicPill = (
     {
