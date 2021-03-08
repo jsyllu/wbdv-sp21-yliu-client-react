@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import './course-grid.css'
+import './course-grid.style.client.css'
 import CourseCard from "./course-card";
 import {Link} from "react-router-dom";
 
@@ -22,10 +22,7 @@ const CourseGrid = ({courses, addCourse, deleteCourse, updateCourse}) => {
 
     return (
     <div>
-        {/*<h2>Course Grid {courses.length}</h2>*/}
         <div className="btn-group">
-            {/*<button className="fas fa-plus fa-lg"*/}
-            {/*        onClick={() => saveNewCourse()}></button>*/}
             <button className="fas fa-folder"></button>
             <button className="fas fa-sort-alpha-up fa-lg"></button>
             <Link to="/courses/table">

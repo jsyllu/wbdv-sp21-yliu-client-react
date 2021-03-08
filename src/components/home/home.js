@@ -1,13 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import './home.css'
+import './home.style.client.css'
 
 export default () =>
     <div className="main-content container">
         <div className="main-text">
             <h1>Welcome to EconStudio</h1>
             <p>
-                A Learning Management System Project
+                An Online Learning Management System Project
             </p>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit,

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import './header.css'
+import './header.style.client.css'
 
 const Header = () =>
     // Navbar

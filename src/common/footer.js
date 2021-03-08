@@ -1,5 +1,5 @@
 import React from 'react'
-import './footer.css'
+import './footer.style.client.css'
 
 const Footer = () =>
     <footer class="footer">
@@ -13,7 +13,7 @@ const Footer = () =>
             </a>
         </span>
             <span class="text-muted">
-            &copy; 2021 EconStudio v0.3
+            &copy; 2021 EconStudio v0.4
         </span>
         </div>
     </footer>
