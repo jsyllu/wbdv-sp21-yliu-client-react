@@ -10,7 +10,6 @@ const CourseRow = ({course, deleteCourse, updateCourse}) => {
     const [lastModified, setLastModified] = useState(course.lastModified)
 
     const saveCourse = () => {
-        setEditing(false)
         const newCourse = {
             ...course,
             number: number,
@@ -20,7 +19,11 @@ const CourseRow = ({course, deleteCourse, updateCourse}) => {
             lastModified: lastModified
         }
         updateCourse(newCourse)
-        // reset input fields
+        endEditing()
+    }
+
+    // reset input fields
+    const endEditing = () => {
         setEditing(false)
         setNumber(course.number)
         setTitle(course.title)
@@ -34,7 +37,7 @@ const CourseRow = ({course, deleteCourse, updateCourse}) => {
             <td className="priority-1">
                 {
                     !editing &&
-                    <Link to="/editor">
+                    <Link to={`/courses/table/edit/${course._id}`}>
                         {course.number}
                     </Link>
                 }
@@ -49,7 +52,10 @@ const CourseRow = ({course, deleteCourse, updateCourse}) => {
             <td className="priority-3">
                 {
                     !editing &&
-                    <Link to="/editor">
+                    <Link to={{
+                        pathname: `/courses/table/edit/${course._id}`,
+                        state: {course}
+                    }}>
                         <span>{course.title}</span>
                     </Link>
                 }
@@ -101,10 +107,20 @@ const CourseRow = ({course, deleteCourse, updateCourse}) => {
                 }
             </td>
             <td>
-                <button onClick={() => deleteCourse(course)}
-                        className="delete-course-btn">
-                    <i className="fas fa-times fa-2x"></i>
-                </button>
+                {
+                    editing &&
+                    <button onClick={() => endEditing()}
+                            className="delete-course-btn">
+                        <i className="fas fa-times fa-2x"></i>
+                    </button>
+                }
+                {
+                    !editing &&
+                    <button onClick={() => deleteCourse(course)}
+                            className="delete-course-btn">
+                        <i className="fas fa-trash-alt fa-2x"></i>
+                    </button>
+                }
             </td>
             <td>
                 {
