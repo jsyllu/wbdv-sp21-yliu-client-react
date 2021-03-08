@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import './course-card.css'
+import './course-card.style.client.css'
 import {Link} from "react-router-dom";
 
 const CourseCard = ({course, deleteCourse, updateCourse}) => {
@@ -13,7 +13,11 @@ const CourseCard = ({course, deleteCourse, updateCourse}) => {
             title: title
         }
         updateCourse(newCourse)
-        // reset input fields
+        endEditing()
+    }
+
+    // reset input fields
+    const endEditing = () => {
         setEditing(false)
         setTitle(course.title)
     }
@@ -21,22 +25,31 @@ const CourseCard = ({course, deleteCourse, updateCourse}) => {
     return (
         <div className="course-card col-lg-6 col-xl-4">
             <div>
-                <button onClick={() => deleteCourse(course)}>
-                    <i className="fas fa-trash-alt fa-lg"></i>
-                </button>
+
                 {
                     editing &&
-                    <button onClick={() => saveCourse()}
-                            className="select-course-btn">
-                        <i className="fas fa-check fa-lg"></i>
-                    </button>
+                        <>
+                            <button onClick={() => endEditing()}>
+                                <i className="fas fa-times fa-lg"></i>
+                            </button>
+                            <button onClick={() => saveCourse()}
+                                    className="select-course-btn">
+                                <i className="fas fa-check fa-lg"></i>
+                            </button>
+                        </>
                 }
                 {
                     !editing &&
-                    <button onClick={() => setEditing(true)}
-                            className="select-course-btn">
-                        <i className="fas fa-edit fa-lg"></i>
-                    </button>
+                        <>
+                            <button onClick={() => deleteCourse(course)}>
+                                <i className="fas fa-trash-alt fa-lg"></i>
+                            </button>
+                            <button onClick={() => setEditing(true)}
+                                    className="select-course-btn">
+                                <i className="fas fa-edit fa-lg"></i>
+                            </button>
+                        </>
+
                 }
             </div>
             <div>
@@ -70,7 +83,10 @@ const CourseCard = ({course, deleteCourse, updateCourse}) => {
                             </figcaption>
                         </div>
                         <figcaption className="go-icon">
-                            <Link to="/editor">
+                            <Link to={{
+                                pathname:`/courses/grid/edit/${course._id}`,
+                                course: course
+                            }}>
                                 <i className="fa fa-chevron-right fa-2x"></i>
                             </Link>
                         </figcaption>
