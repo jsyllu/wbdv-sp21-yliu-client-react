@@ -10,6 +10,7 @@ const CourseGrid = ({courses, addCourse, deleteCourse, updateCourse}) => {
         setNewCourseTitle('New Course Title') // reset title field
         const createAt = new Date() // today's date
         const newCourse = {
+            type: 'course',
             number: 'CS-0000-00',
             title: newCourseTitle,
             owner: 'Jess Liu',
@@ -34,11 +35,10 @@ const CourseGrid = ({courses, addCourse, deleteCourse, updateCourse}) => {
             <div className="row">
                 <div className="course-card new-course col-lg-6 col-xl-4">
                     <div>
-                        <button style={{color: 'transparent'}}>
-                            className="select-course-btn">
+                        <button className="hidden-btn">
                             <i className="fas fa-check fa-lg"></i>
                         </button>
-                        <button style={{color: 'transparent'}}>
+                        <button className="hidden-btn">
                             <i className="fas fa-trash-alt fa-lg"></i>
                         </button>
                     </div>

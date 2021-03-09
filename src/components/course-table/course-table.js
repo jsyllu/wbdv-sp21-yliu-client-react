@@ -15,29 +15,30 @@ class CourseTable
         newCourseID: 'CS-0000-00',
         newCourseOwner: 'Jess Liu',
         newCourseTerm: '2021 Spring',
-        newCourseDate: '2021-02-22'
+        newCourseDate: '2021-05-01'
     }
 
     render() {
 
         const saveNewCourse = () => {
             const newCourse = {
+                type: 'course',
                 number: this.state.newCourseID,
                 title: this.state.newCourseTitle,
                 owner: this.state.newCourseOwner,
                 term: this.state.newCourseTerm,
                 lastModified: this.state.newCourseDate
             }
+            console.log(newCourse)
+            this.props.addCourse(newCourse)
             // reset title field
             this.setState({
                 newCourseTitle: 'New Course Title',
                 newCourseID: 'CS-0000-00',
                 newCourseOwner: 'Jess Liu',
                 newCourseTerm: '2021 Spring',
-                newCourseDate: ''
+                newCourseDate: '2021-05-01'
             })
-            console.log(newCourse)
-            this.props.addCourse(newCourse)
         }
 
         return (
