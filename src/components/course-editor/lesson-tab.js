@@ -37,7 +37,8 @@ const LessonTab = (
                                 to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
                                 item={lesson}
                                 updateItem={updateLesson}
-                                deleteItem={deleteLesson} />
+                                deleteItem={deleteLesson}
+                                dataType='lesson'/>
                         </a>
                     </li>
                 )}
@@ -72,7 +73,8 @@ const stpm = (state) => ({
 
 const dtpm = (dispatch) => ({
     createLesson: (moduleId, lessonTitle) => {
-        lessonService.createLesson(moduleId, {title: lessonTitle})
+        lessonService.createLesson(moduleId,
+            {title: lessonTitle, type: 'lesson'})
             .then(lesson => dispatch({
                 type: "CREATE_LESSON",
                 newLesson: lesson

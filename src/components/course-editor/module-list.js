@@ -80,7 +80,7 @@ const stpm = (state) => ({
 
 const dtpm = (dispatch) => ({
     createModule: (courseId, moduleTitle) => {
-        moduleService.createModule(courseId, {title: moduleTitle})
+        moduleService.createModule(courseId, {title: moduleTitle, type: 'module'})
             .then(module => dispatch({
                 type: "CREATE_MODULE",
                 newModule: module
