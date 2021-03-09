@@ -33,7 +33,11 @@ Main Course Editor
     border-color: transparent;
     border-bottom: solid 1px transparent;
     outline-color: transparent;
+    padding: 0;
     color: var(--color-font-dark);
+}
+.course-info .course-title {
+    font-size: 1.2rem;
 }
 .course-info input:focus {
     border-bottom: solid 1px white;
@@ -96,7 +100,7 @@ Lesson
 }
 .editor-header-lesson .nav-link{
     color: inherit;
-    margin: 0 0.5rem 0 0;
+    margin: 0 0.5rem 0.5rem 0;
     padding: 1px 0.75rem 0 0.75rem;
     background: transparent;
     border-width: 2px;
@@ -191,7 +195,7 @@ Modules
     color: inherit;
 }
 .modules .list-group-item i{
-    position: relative;
+    /*position: relative;*/
     float: right;
 }
 .modules .list-group-item input{
@@ -200,7 +204,7 @@ Modules
     border: none;
     border-bottom: 1px solid rgba(255,255,255,0.7);
     overflow: hidden;
-}
+ }
 .modules .list-group-item input:focus{
     background: none;
     outline: none;
@@ -419,4 +423,24 @@ Widget Group
 @keyframes animated-cursor{
     from{border-right-color: white;}
     to{border-right-color: transparent;}
+}
+
+
+.option-dropdown button {
+    padding: 0;
+}
+.option-dropdown button:hover,
+.option-dropdown button:active {
+    color: inherit;
+}
+.option-dropdown .dropdown-menu {
+    position: relative!important;
+    /*z-index: 100!important;*/
+    min-width: auto;
+    padding: 0.1rem;
+    background: var(--color-light);
+}
+.option-dropdown .dropdown-menu a{
+    padding: 0.5rem;
+    width: fit-content;
 }

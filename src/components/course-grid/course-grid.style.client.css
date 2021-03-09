@@ -40,5 +40,9 @@ New Course Card
     border-radius: 0;
 }
 .new-course .card-title input:focus{
+}
 
+
+.hidden-btn {
+    color: transparent;
 }
