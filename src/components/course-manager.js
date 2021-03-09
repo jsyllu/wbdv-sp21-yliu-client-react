@@ -3,7 +3,6 @@ import './course-manager.style.client.css'
 import CourseTable from "./course-table/course-table";
 import CourseGrid from "./course-grid/course-grid";
 import {Route} from "react-router-dom";
-import DeleteCourseDialog from "./delete-course-dialog";
 import CourseService from "../services/course-service";
 import Helmet from "react-helmet";
 
@@ -36,15 +35,14 @@ class CourseManager extends React.Component {
     addCourse = (courseToAdd) => {
         CourseService.createCourse(courseToAdd)
             .then((actualCourse) => {
-                // this.state.courses.push(actualCourse)
                 this.state.courses.splice(0,0, actualCourse)
                 this.setState(this.state)
             })
     }
 
     deleteCourse = (courseToDelete) => {
-        alert("Deleting course " + courseToDelete.number + " - "
-            + courseToDelete.title + " - " + courseToDelete.term)
+        // alert("Deleting course " + courseToDelete.number + " - "
+        //     + courseToDelete.title + " - " + courseToDelete.term)
         CourseService.deleteCourse(courseToDelete._id)
             .then(status => {
                 this.setState((prevState) => ({
@@ -73,6 +71,7 @@ class CourseManager extends React.Component {
     saveNewCourse = () => {
         const createAt = new Date() // today's date
         const newCourse = {
+            type: 'course',
             number: 'CS-0000-00',
             title: this.state.newCourseTitle,
             owner: 'Jess Liu',
@@ -93,7 +92,6 @@ class CourseManager extends React.Component {
             </Helmet>
             <div className="dashboard container">
                 <h1>Course Manager (Faculty View)</h1>
-                <DeleteCourseDialog/>
                 <div className="new-course-title-form">
                     <input className="form-control"
                            type="text"
