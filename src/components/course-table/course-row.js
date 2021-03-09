@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom";
+import DeleteItemDialog from "../util/delete-item-dialog";
 
 const CourseRow = ({course, deleteCourse, updateCourse}) => {
     const [editing, setEditing] = useState(false)
@@ -8,6 +9,8 @@ const CourseRow = ({course, deleteCourse, updateCourse}) => {
     const [owner, setOwner] = useState(course.owner)
     const [term, setTerm] = useState(course.term)
     const [lastModified, setLastModified] = useState(course.lastModified)
+
+    const [deleteDialog, setDeleteDialog] = useState(false)
 
     const saveCourse = () => {
         const newCourse = {
@@ -116,9 +119,9 @@ const CourseRow = ({course, deleteCourse, updateCourse}) => {
                 }
                 {
                     !editing &&
-                    <button onClick={() => deleteCourse(course)}
-                            className="delete-course-btn">
-                        <i className="fas fa-trash-alt fa-2x"></i>
+                    <button className=""
+                            onClick={() => setDeleteDialog(true)}>
+                        <i className="far fa-trash-alt fa-2x"></i>
                     </button>
                 }
             </td>
@@ -138,6 +141,14 @@ const CourseRow = ({course, deleteCourse, updateCourse}) => {
                     </button>
                 }
             </td>
+            {
+                deleteDialog &&
+                <DeleteItemDialog
+                    item={course}
+                    deleteItem={deleteCourse}
+                    openDialog={setDeleteDialog}
+                />
+            }
         </tr>
     )
 }

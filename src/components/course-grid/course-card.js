@@ -1,10 +1,13 @@
 import React, {useState} from 'react'
 import './course-card.style.client.css'
 import {Link} from "react-router-dom";
+import DeleteItemDialog from "../util/delete-item-dialog";
 
 const CourseCard = ({course, deleteCourse, updateCourse}) => {
     const [editing, setEditing] = useState(false)
     const [title, setTitle] = useState(course.title)
+
+    const [deleteDialog, setDeleteDialog] = useState(false)
 
     const saveCourse = () => {
         setEditing(false)
@@ -41,8 +44,9 @@ const CourseCard = ({course, deleteCourse, updateCourse}) => {
                 {
                     !editing &&
                         <>
-                            <button onClick={() => deleteCourse(course)}>
-                                <i className="fas fa-trash-alt fa-lg"></i>
+                            <button className=""
+                                    onClick={() => setDeleteDialog(true)}>
+                                <i className="far fa-trash-alt fa-lg"></i>
                             </button>
                             <button onClick={() => setEditing(true)}
                                     className="select-course-btn">
@@ -92,6 +96,14 @@ const CourseCard = ({course, deleteCourse, updateCourse}) => {
                         </figcaption>
                     </div>
                 </figure>
+                {
+                    deleteDialog &&
+                    <DeleteItemDialog
+                        item={course}
+                        deleteItem={deleteCourse}
+                        openDialog={setDeleteDialog}
+                    />
+                }
             </div>
         </div>
     )
