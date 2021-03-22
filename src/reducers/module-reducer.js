@@ -1,4 +1,11 @@
 import React from 'react'
+import {
+    CREATE_MODULE,
+    DELETE_MODULE,
+    FIND_MODULE,
+    FIND_MODULES_FOR_COURSE,
+    UPDATE_MODULE
+} from "../components/actions/module-actions";
 
 const initialState = {
     modules: [
@@ -9,7 +16,7 @@ const initialState = {
 
 const moduleReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "CREATE_MODULE":
+        case CREATE_MODULE:
             return {
                 ...state,
                 modules: [
@@ -17,14 +24,14 @@ const moduleReducer = (state = initialState, action) => {
                     action.newModule
                 ]
             }
-        case "DELETE_MODULE":
+        case DELETE_MODULE:
             return {
                 ...state,
                 modules: state.modules.filter(module => {
                     return module._id !== action.deleteModule._id;
                 })
             }
-        case "UPDATE_MODULE":
+        case UPDATE_MODULE:
             return {
                 ...state,
                 modules: state.modules.map(module => {
@@ -35,12 +42,12 @@ const moduleReducer = (state = initialState, action) => {
                     }
                 })
             }
-        case "FIND_MODULES_FOR_COURSE":
+        case FIND_MODULES_FOR_COURSE:
             return {
                 ...state,
                 modules: action.modules
             }
-        case "FIND_MODULE":
+        case FIND_MODULE:
             return {
                 foundModule: action.foundModule
             }

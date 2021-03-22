@@ -1,32 +1,33 @@
 import React, {useEffect, useState} from 'react'
-import {connect, Provider} from 'react-redux'
+import {connect} from 'react-redux'
 import EditableItem from "../editable-item/editable-item"
 import {useParams} from 'react-router-dom'
-import moduleService from '../../services/module-service'
+import moduleActions from "../actions/module-actions"
+import lessonActions from "../actions/lesson-actions"
+import topicActions from "../actions/topic-actions"
+import widgetActions from "../actions/widget-actions";
 
 const ModuleList = (
     {
         modules = [],
-        lessons = [],
-        topics =[],
         createModule,
         updateModule,
         deleteModule,
         findModulesForCourse,
         findModule,
         clearCachedLessons,
-        clearCachedTopics
+        clearCachedTopics,
+        clearCachedWidgets
     }) => {
     const {layout, courseId, moduleId} = useParams()
     const [newModuleTitle, setNewModuleTitle] = useState("New Module")
-
-    // console.log(this.props.location.pathname)
 
     useEffect(() => {
         if (courseId !== "undefined" && typeof courseId !== "undefined") {
             findModulesForCourse(courseId)
             clearCachedLessons()
             clearCachedTopics()
+            clearCachedWidgets()
         }
     }, [courseId])
 
@@ -79,52 +80,14 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-    createModule: (courseId, moduleTitle) => {
-        moduleService.createModule(courseId, {title: moduleTitle, type: 'module'})
-            .then(module => dispatch({
-                type: "CREATE_MODULE",
-                newModule: module
-            }))
-    },
-    updateModule: (newItem) => {
-        console.log("update module to" + newItem.title)
-        moduleService.updateModule(newItem._id, newItem)
-            .then(status => dispatch({
-                type: "UPDATE_MODULE",
-                updateModule: newItem
-            }))
-    },
-    deleteModule: (itemToDelete) => {
-        moduleService.deleteModule(itemToDelete._id)
-            .then(status => dispatch({
-                type: "DELETE_MODULE",
-                deleteModule: itemToDelete
-            }))
-    },
-    findModulesForCourse: (courseId) => {
-        moduleService.findModulesForCourse(courseId)
-            .then(modules => dispatch({
-                type: "FIND_MODULES_FOR_COURSE",
-                modules: modules
-            }))
-    },
-    findModule: (moduleId) => {
-        moduleService.findModule(moduleId)
-            .then(foundModule => dispatch({
-                type: "FIND_MODULE",
-                foundModule: foundModule
-            }))
-    },
-    clearCachedLessons: () => {
-        lessons: dispatch({
-            type: "CLEAR_CACHED_LESSONS"
-        })
-    },
-    clearCachedTopics: () => {
-        topics: dispatch({
-            type: "CLEAR_CACHED_TOPICS"
-        })
-    }
+    createModule: (courseId, moduleTitle) => moduleActions.createModule(dispatch, courseId, moduleTitle),
+    updateModule: (newItem) => moduleActions.updateModule(dispatch, newItem),
+    deleteModule: (itemToDelete) => moduleActions.deleteModule(dispatch, itemToDelete),
+    findModulesForCourse: (courseId) => moduleActions.findModulesForCourse(dispatch, courseId),
+    findModule: (moduleId) => moduleActions.findModule(dispatch, moduleId),
+    clearCachedLessons: () => lessonActions.clearCachedLessons(dispatch),
+    clearCachedTopics: () => topicActions.clearCachedTopics(dispatch),
+    clearCachedWidgets: () => widgetActions.clearCachedWidgets(dispatch)
 })
 
 export default connect
