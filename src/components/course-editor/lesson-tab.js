@@ -2,7 +2,9 @@ import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import EditableItem from "../editable-item/editable-item"
 import {useParams} from 'react-router-dom'
-import lessonService from '../../services/lesson-service'
+import lessonActions from "../actions/lesson-actions"
+import topicActions from "../actions/topic-actions"
+import widgetActions from "../actions/widget-actions";
 
 const LessonTab = (
     {
@@ -12,7 +14,8 @@ const LessonTab = (
         deleteLesson,
         findLessonsForModule,
         findLesson,
-        clearCachedTopics
+        clearCachedTopics,
+        clearCachedWidgets
     }) => {
     const {layout, courseId, moduleId, lessonId} = useParams()
     const [newLessonTitle, setNewLessonTitle] = useState("New Lesson")
@@ -21,6 +24,7 @@ const LessonTab = (
         if (moduleId !== "undefined" && typeof moduleId !== "undefined") {
             findLessonsForModule(moduleId)
             clearCachedTopics()
+            clearCachedWidgets()
         }
     }, [moduleId])
 
@@ -72,47 +76,13 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-    createLesson: (moduleId, lessonTitle) => {
-        lessonService.createLesson(moduleId,
-            {title: lessonTitle, type: 'lesson'})
-            .then(lesson => dispatch({
-                type: "CREATE_LESSON",
-                newLesson: lesson
-            }))
-    },
-    updateLesson: (newItem) => {
-        lessonService.updateLesson(newItem._id, newItem)
-            .then(status => dispatch({
-                type: "UPDATE_LESSON",
-                updateLesson: newItem
-            }))
-    },
-    deleteLesson: (itemToDelete) => {
-        lessonService.deleteLesson(itemToDelete._id)
-            .then(status => dispatch({
-                type: "DELETE_LESSON",
-                deleteLesson: itemToDelete
-            }))
-    },
-    findLessonsForModule: (moduleId) => {
-        lessonService.findLessonsForModule(moduleId)
-            .then(lessons => dispatch({
-                type: "FIND_LESSONS_FOR_MODULE",
-                lessons
-            }))
-    },
-    findLesson: (lessonId) => {
-        lessonService.findLesson(lessonId)
-            .then(foundLesson => dispatch({
-                type: "FIND_LESSON",
-                foundLesson
-            }))
-    },
-    clearCachedTopics: () => {
-        topics: dispatch({
-            type: "CLEAR_CACHED_TOPICS"
-        })
-    }
+    createLesson: (moduleId, lessonTitle) => lessonActions.createLesson(dispatch, moduleId, lessonTitle),
+    updateLesson: (newItem) => lessonActions.updateLesson(dispatch, newItem),
+    deleteLesson: (itemToDelete) => lessonActions.deleteLesson(dispatch, itemToDelete),
+    findLessonsForModule: (moduleId) => lessonActions.findLessonsForModule(dispatch, moduleId),
+    findLesson: (lessonId) => lessonActions.findLesson(dispatch, lessonId),
+    clearCachedTopics: () => topicActions.clearCachedTopics(dispatch),
+    clearCachedWidgets: () => widgetActions.clearCachedWidgets(dispatch)
 })
 
 export default connect
