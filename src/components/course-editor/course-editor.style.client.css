@@ -313,6 +313,7 @@ Widget Group
     border: 1px solid white;
     border-radius: 15px;
     padding: 1.5rem;
+    margin-bottom: 1rem;
 }
 .widget-header {
     text-align: left;
@@ -322,6 +323,7 @@ Widget Group
 }
 .widget-type-title{
     width: inherit;
+    text-transform: lowercase;
 }
 .widget-header-right{
     margin-left: auto;

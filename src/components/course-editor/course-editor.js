@@ -2,22 +2,25 @@ import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
+import Helmet from "react-helmet";
 import './course-editor.style.client.css';
 import moduleReducer from '../../reducers/module-reducer';
 import lessonReducer from "../../reducers/lesson-reducer";
 import topicReducer from "../../reducers/topic-reducer";
+import widgetReducer from "../../reducers/widget-reducer";
 import ModuleList from './module-list';
 import LessonTab from "./lesson-tab";
 import TopicPill from "./topic-pill";
+import WidgetList from "./widget-list";
 import courseService from "../../services/course-service";
-import Helmet from "react-helmet";
 
-const reducer = combineReducers({
+const reducers = combineReducers({
     moduleReducer,
     lessonReducer,
-    topicReducer
+    topicReducer,
+    widgetReducer
 })
-const store = createStore(reducer)
+const store = createStore(reducers)
 
 const CourseEditor = () => {
     const [course, setCourse] = useState({})
@@ -29,8 +32,6 @@ const CourseEditor = () => {
     const [title, setTitle] = useState(course.title)
     const [owner, setOwner] = useState(course.owner)
     const [term, setTerm] = useState(course.term)
-
-    const [preview, setPreview] = useState(true)
 
     // fetch course by courseId
     useEffect(() => {
@@ -103,11 +104,8 @@ const CourseEditor = () => {
                         <div className="editor-header row">
                             <div className="editor-header-title col-4">
                                 <Link to={`/courses/${layout}`}>
-                                    <button className="back-icon"
-                                        // onClick={() => history.goBack()}
-                                    >
+                                    <button className="back-icon">
                                         <i className="back-icon fa fa-chevron-left fa-2x">
-                                            {/*back*/}
                                         </i>
                                     </button>
                                 </Link>
@@ -201,81 +199,28 @@ const CourseEditor = () => {
                             <div className="topics col-8">
                                 <TopicPill />
                                 <div className="topic-btn-group">
-                                    <div className="row">
-                                        <button className="btn btn-outline-primary">
-                                            Save
-                                        </button>
-                                        &ensp;
-                                        <div className="topic-preview row">
-                                            <p className="col-6">Preview</p>
-                                            {
-                                                preview &&
-                                                <i className="col-6 fa fa-toggle-on"
-                                                   onClick={() => setPreview(false)}></i>
-                                            }
-                                            {
-                                                !preview &&
-                                                <i className="col-6 fa fa-toggle-off"
-                                                   onClick={() => setPreview(true)}></i>
-                                            }
-                                        </div>
-                                    </div>
+                                    {/*<div className="row">*/}
+                                    {/*    <button className="btn btn-outline-primary">*/}
+                                    {/*        Save*/}
+                                    {/*    </button>*/}
+                                    {/*    &ensp;*/}
+                                    {/*    <div className="topic-preview row">*/}
+                                    {/*        <p className="col-6">Preview</p>*/}
+                                    {/*        {*/}
+                                    {/*            preview &&*/}
+                                    {/*            <i className="col-6 fa fa-toggle-on"*/}
+                                    {/*               onClick={() => setPreview(false)}></i>*/}
+                                    {/*        }*/}
+                                    {/*        {*/}
+                                    {/*            !preview &&*/}
+                                    {/*            <i className="col-6 fa fa-toggle-off"*/}
+                                    {/*               onClick={() => setPreview(true)}></i>*/}
+                                    {/*        }*/}
+                                    {/*    </div>*/}
+                                    {/*</div>*/}
                                 </div>
                                 <div className="widget-group container">
-                                    <div className="widget">
-                                        <div className="widget-header">
-                                            <div className="row">
-                                                <h3 className="widget-type-title">
-                                                    Heading Widget
-                                                </h3>
-                                                <div className="widget-header-right">
-                                                    <button className="widget-position-icon">
-                                                        <i className="fa fa-chevron-up fa-lg"></i>
-                                                    </button>
-                                                    <button class="widget-position-icon">
-                                                        <i className="fa fa-chevron-down fa-lg"></i>
-                                                    </button>
-                                                    <select className="widget-type-select">
-                                                        <option value="heading" selected>Heading</option>
-                                                        <option value="text">Text</option>
-                                                        <option value="image">Image</option>
-                                                        <option value="video">Video</option>
-                                                        <option value="file">File</option>
-                                                        <option value="url">Url</option>
-                                                    </select>
-                                                    <button className="widget-delete-icon">
-                                                        <i className="fa fa-times fa-lg"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <input className="widget-content" type="text" value="Heading text"
-                                               placeholder="widget content" />
-                                        <select className="widget-type-detail-select">
-                                            <option value="h1" selected>Heading 1</option>
-                                            <option value="h2">Heading 2</option>
-                                            <option value="h3">Heading 3</option>
-                                            <option value="h4">Heading 4</option>
-                                            <option value="h5">Heading 5</option>
-                                        </select>
-                                        <input className="widget-name"
-                                               type="text"
-                                               value="Widget name"
-                                               placeholder="Widget name" />
-                                        <hr />
-                                        {
-                                            preview &&
-                                            <div className="widget-preview">
-                                                <h4>Preview</h4>
-                                                <h1>Heading Text</h1>
-                                            </div>
-                                        }
-                                    </div>
-                                    <div className="new-widget-icon col-2">
-                                        <button>
-                                            <i className="fa fa-plus-circle fa-3x"></i>
-                                        </button>
-                                    </div>
+                                    <WidgetList />
                                 </div>
                             </div>
                         </div>
