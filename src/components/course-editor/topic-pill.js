@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import {connect, Provider} from 'react-redux'
+import {connect} from 'react-redux'
 import EditableItem from "../editable-item/editable-item"
 import {useParams} from 'react-router-dom'
-import topicService from '../../services/topic-service'
+import topicActions from "../actions/topic-actions"
+import widgetActions from "../actions/widget-actions";
 
 const TopicPill = (
     {
@@ -10,7 +11,9 @@ const TopicPill = (
         createTopic,
         updateTopic,
         deleteTopic,
-        findTopicsForLesson
+        findTopic,
+        findTopicsForLesson,
+        clearCachedWidgets
     }) => {
     const {layout, courseId, moduleId, lessonId, topicId} = useParams()
     const [newTopicTitle, setNewTopicTitle] = useState("New Topic")
@@ -18,6 +21,7 @@ const TopicPill = (
     useEffect(() => {
         if (lessonId !== "undefined" && typeof lessonId !== "undefined") {
             findTopicsForLesson(lessonId)
+            clearCachedWidgets()
         }
     }, [lessonId])
 
@@ -65,41 +69,12 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-    createTopic: (lessonId, topicTitle) => {
-        topicService.createTopic(lessonId, {title: topicTitle, type: 'topic'})
-            .then(topic => dispatch({
-                type: "CREATE_TOPIC",
-                newTopic: topic
-            }))
-    },
-    updateTopic: (newItem) => {
-        topicService.updateTopic(newItem._id, newItem)
-            .then(status => dispatch({
-                type: "UPDATE_TOPIC",
-                updateTopic: newItem
-            }))
-    },
-    deleteTopic: (itemToDelete) => {
-        topicService.deleteTopic(itemToDelete._id)
-            .then(status => dispatch({
-                type: "DELETE_TOPIC",
-                deleteTopic: itemToDelete
-            }))
-    },
-    findTopicsForLesson: (lessonId) => {
-        topicService.findTopicsForLesson(lessonId)
-            .then(topics => dispatch({
-                type: "FIND_TOPICS_FOR_LESSON",
-                topics
-            }))
-    },
-    findTopic: (topicId) => {
-        topicService.findTopic(topicId)
-            .then(foundTopic => dispatch({
-                type: "FIND_TOPIC",
-                foundTopic
-            }))
-    }
+    createTopic: (lessonId, topicTitle) => topicActions.createTopic(dispatch, lessonId, topicTitle),
+    updateTopic: (newItem) => topicActions.updateTopic(dispatch, newItem),
+    deleteTopic: (itemToDelete) =>  topicActions.deleteTopic(dispatch, itemToDelete),
+    findTopicsForLesson: (lessonId) => topicActions.findTopicsForLesson(dispatch, lessonId),
+    findTopic: (topicId) => topicActions.findTopic(dispatch, topicId),
+    clearCachedWidgets: () => widgetActions.clearCachedWidgets(dispatch)
 })
 
 export default connect

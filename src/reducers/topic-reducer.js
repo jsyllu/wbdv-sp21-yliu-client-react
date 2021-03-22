@@ -1,4 +1,12 @@
 import React from 'react'
+import {
+    CREATE_TOPIC,
+    UPDATE_TOPIC,
+    DELETE_TOPIC,
+    FIND_TOPIC,
+    FIND_TOPICS_FOR_LESSON,
+    CLEAR_CACHED_TOPICS
+} from "../components/actions/topic-actions";
 
 const initialState = {
     topics: [
@@ -9,7 +17,7 @@ const initialState = {
 
 const topicReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "CREATE_TOPIC":
+        case CREATE_TOPIC:
             return {
                 ...state,
                 topics: [
@@ -17,14 +25,14 @@ const topicReducer = (state = initialState, action) => {
                     action.newTopic
                 ]
             }
-        case "DELETE_TOPIC":
+        case DELETE_TOPIC:
             return {
                 ...state,
                 topics: state.topics.filter(topic => {
                     return topic._id !== action.deleteTopic._id;
                 })
             }
-        case "UPDATE_TOPIC":
+        case UPDATE_TOPIC:
             return {
                 ...state,
                 topics: state.topics.map(topic => {
@@ -35,16 +43,16 @@ const topicReducer = (state = initialState, action) => {
                     }
                 })
             }
-        case "FIND_TOPICS_FOR_LESSON":
+        case FIND_TOPICS_FOR_LESSON:
             return {
                 ...state,
                 topics: action.topics
             }
-        case "FIND_TOPIC":
+        case FIND_TOPIC:
             return {
                 foundTopic: action.foundTopic
             }
-        case "CLEAR_CACHED_TOPICS":
+        case CLEAR_CACHED_TOPICS:
             return {
                 topics: []
             }
