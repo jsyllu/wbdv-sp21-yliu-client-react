@@ -1,9 +1,10 @@
 import React, {useState} from "react"
-import HeadingWidget from "./heading-widget";
-import ParagraphWidget from "./paragraph-widget";
-import UrlWidget from "./url-widget";
-import VideoYoutubeWidget from "./video-widget";
-import ImageWidget from "./image-widget";
+import HeadingWidget from "../course-editor/widgets/heading-widget";
+import ParagraphWidget from "../course-editor/widgets/paragraph-widget";
+import UrlWidget from "../course-editor/widgets/url-widget";
+import VideoYoutubeWidget from "../course-editor/widgets/video-widget";
+import ImageWidget from "../course-editor/widgets/image-widget";
+import DeleteItemDialog from "../util/delete-item-dialog";
 
 export const EditableWidget = (
     {
@@ -18,11 +19,13 @@ export const EditableWidget = (
 
     const [type, setType] = useState(widget.type)
     const [editing, setEditing] = useState(false)
+    const [theWidget, setWidget] = useState(widget)
+    const [deleteDialog, setDeleteDialog] = useState(false)
 
-    // Todo: move this to individual Widget...
     const updateTheWidget = () => {
         widget = {
             ...widget,
+            ...theWidget,
             type: type
         }
         updateWidget(widget)
@@ -31,6 +34,7 @@ export const EditableWidget = (
 
     const exitEditing = () => {
         setType(widget.type)
+        setWidget(widget)
         setEditing(false)
     }
 
@@ -48,7 +52,7 @@ export const EditableWidget = (
                         <div className="widget-header">
                             <div className="row">
                                 <h3 className="widget-type-title">
-                                    {type} widget
+                                    {widget.name}
                                 </h3>
                                 <div className="widget-header-right">
                                     <button className="widget-position-icon">
@@ -76,7 +80,7 @@ export const EditableWidget = (
                                         <i className="fas fa-check fa-lg"></i>
                                     </button>
                                     <button className="widget-delete-icon"
-                                            onClick={() => deleteWidget(widget)}>
+                                            onClick={() => setDeleteDialog(true)}>
                                         <i className="fas fa-trash fa-lg"></i>
                                     </button>
                                 </div>
@@ -92,32 +96,37 @@ export const EditableWidget = (
                                 return (
                                     <HeadingWidget widget={widget}
                                                    editing={editing}
-                                                   preview={preview} />
+                                                   preview={preview}
+                                                   setWidget={setWidget} />
                                 )
                             case PARAGRAPH:
                                 return (
                                     <ParagraphWidget widget={widget}
                                                      editing={editing}
-                                                     preview={preview} />
+                                                     preview={preview}
+                                                     setWidget={setWidget} />
                                 )
                             case URL:
                                 return (
                                     <UrlWidget widget={widget}
                                                editing={editing}
-                                               preview={preview} />
+                                               preview={preview}
+                                               setWidget={setWidget} />
                                 )
                             case VIDEO_YOUTUBE:
                                 return (
                                     <VideoYoutubeWidget widget={widget}
                                                         editing={editing}
-                                                        preview={preview} />
+                                                        preview={preview}
+                                                        setWidget={setWidget} />
                                 )
 
                             case IMAGE:
                                 return (
                                     <ImageWidget widget={widget}
                                                  editing={editing}
-                                                 preview={preview} />
+                                                 preview={preview}
+                                                 setWidget={setWidget} />
                                 )
                             default:
                                 return (
@@ -125,6 +134,15 @@ export const EditableWidget = (
                                 )
                         }
                     })()
+                }
+
+                {
+                    deleteDialog &&
+                    <DeleteItemDialog
+                        item={widget}
+                        deleteItem={deleteWidget}
+                        openDialog={setDeleteDialog}
+                    />
                 }
             </div>
         </>

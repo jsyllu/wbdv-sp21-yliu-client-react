@@ -1,7 +1,13 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 
-const UrlWidget = ({widget, editing, preview}) => {
+const UrlWidget = ({widget, editing, preview, setWidget}) => {
     const [url, setUrl] = useState(widget.url)
+
+    useEffect(() => {
+        widget.url = url;
+        setWidget(widget)
+    }, [url])
+
     return (
         <>
             {

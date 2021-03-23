@@ -16,7 +16,6 @@ export const createWidget = (dispatch, topicId, widget) => {
         }))
 }
 export const updateWidget = (dispatch, newItem) => {
-    console.log(newItem)
     widgetService.updateWidget(newItem.id, newItem)
         .then(status => dispatch({
             type: UPDATE_WIDGET,

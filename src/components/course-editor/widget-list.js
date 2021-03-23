@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import {useParams} from "react-router-dom"
 import widgetActions from "../actions/widget-actions"
 import {connect} from "react-redux"
-import EditableWidget from "./widgets/editable-widget"
+import EditableWidget from "../editable-item/editable-widget"
 
 const WidgetList = (
     {
@@ -32,21 +32,23 @@ const WidgetList = (
 
     return (
         <>
-            <div className="topic-preview row float-right">
-                <p className="col-6">Preview</p>
+            <div className="widget-preview">
                 {
                     preview &&
-                    <i className="col-6 fa fa-toggle-on"
-                       onClick={() => setPreview(false)}></i>
+                    <button onClick={() => setPreview(false)}>
+                        Preview
+                        <i className="fas fa-toggle-on"
+                           onClick={() => setPreview(false)}></i>
+                    </button>
                 }
                 {
                     !preview &&
-                    <i className="col-6 fa fa-toggle-off"
-                       onClick={() => setPreview(true)}></i>
+                    <button onClick={() => setPreview(true)}>
+                        Preview
+                        <i className="fas fa-toggle-off"></i>
+                    </button>
                 }
             </div>
-
-            <p>{widgets.length} widgets</p>
 
             {
                 widgets.map(w =>
@@ -56,15 +58,6 @@ const WidgetList = (
                                     preview={preview} />
                 )
             }
-
-            {/*{*/}
-            {/*    preview &&*/}
-            {/*    <div className="widget-preview">*/}
-            {/*        <h4>Preview</h4>*/}
-            {/*        <h1>Heading Text</h1>*/}
-            {/*    </div>*/}
-            {/*}*/}
-
             <div className="new-widget-icon col-2">
                 <button>
                     <i className="fa fa-plus-circle fa-3x"
@@ -72,7 +65,6 @@ const WidgetList = (
                            if (topicId === "undefined" || typeof topicId === "undefined") {
                                alert("TopicNotFoundError")
                            } else {
-                               console.log(newHeadingWidget)
                                createWidget(topicId, newHeadingWidget)
                            }
                        }}></i>

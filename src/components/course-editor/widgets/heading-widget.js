@@ -1,14 +1,22 @@
 import React, {useEffect, useState} from "react"
 
-const HeadingWidget = ({widget, editing, preview}) => {
+const HeadingWidget = ({widget, editing, preview, setWidget}) => {
     const [size, setSize] = useState(widget.size)
     const [heading, setHeading] = useState(widget.heading)
     const [HeaderTag, setHeaderTag] = useState(`h${size}`)
 
     useEffect(() => {
+        if (size === "undefined" || typeof size === "undefined") {
+            setSize(1)
+        }
         setHeaderTag(`h${size}`)
-        console.log(widget)
     }, [size])
+
+    useEffect(() => {
+        widget.heading = heading;
+        widget.size = size;
+        setWidget(widget)
+    }, [heading, size])
 
     return (
         <>

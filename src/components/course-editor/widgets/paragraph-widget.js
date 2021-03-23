@@ -1,7 +1,13 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 
-const ParagraphWidget = ({widget, editing, preview}) => {
+const ParagraphWidget = ({widget, editing, preview, setWidget}) => {
     const [text, setText] = useState(widget.text)
+
+    useEffect(() => {
+        widget.text = text;
+        setWidget(widget)
+    }, [text])
+
     return (
         <>
             {
@@ -11,8 +17,9 @@ const ParagraphWidget = ({widget, editing, preview}) => {
                               cols="50"
                               rows="5"
                               placeholder="paragraph goes here..."
-                              onChange={(e) => setText(e.target.value)}>
-                    {text}
+                              onChange={(e) => setText(e.target.value)}
+                              value={text} >
+                    {/*{text}*/}
                 </textarea>
                     {
                         preview &&
