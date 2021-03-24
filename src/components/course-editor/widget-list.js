@@ -30,10 +30,6 @@ const WidgetList = (
         }
     }, [topicId])
 
-    useEffect(() => {
-        console.log(widgets);
-    }, [widgets]);
-
     return (
         <>
             <div className="widget-preview">
@@ -59,7 +55,8 @@ const WidgetList = (
                     <EditableWidget widget={w}
                                     deleteWidget={deleteWidget}
                                     updateWidget={updateWidget}
-                                    preview={preview} />
+                                    preview={preview}
+                                    key={w.id} />
                 )
             }
             <div className="new-widget-icon col-2">
