@@ -14,14 +14,14 @@ const WidgetList = (
         findAllWidgets,
         findWidget
     }) => {
-    const {layout, courseId, moduleId, lessonId, topicId, widgetId} = useParams()
-    const [newHeadingWidget] = useState({
+    const {layout, courseId, moduleId, lessonId, topicId} = useParams()
+    const newHeadingWidget = {
         topicId: topicId,
         type: "HEADING",
         size: 1,
         heading: "New Heading",
         widgetOrder: widgets.length
-    })
+    }
     const [preview, setPreview] = useState(false)
 
     useEffect(() => {
@@ -29,6 +29,10 @@ const WidgetList = (
             findWidgetsForTopic(topicId)
         }
     }, [topicId])
+
+    useEffect(() => {
+        console.log(widgets);
+    }, [widgets]);
 
     return (
         <>
@@ -51,7 +55,7 @@ const WidgetList = (
             </div>
 
             {
-                widgets.map(w =>
+                widgets.map((w) =>
                     <EditableWidget widget={w}
                                     deleteWidget={deleteWidget}
                                     updateWidget={updateWidget}

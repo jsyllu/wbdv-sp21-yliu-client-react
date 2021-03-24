@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import HeadingWidget from "../course-editor/widgets/heading-widget";
 import ParagraphWidget from "../course-editor/widgets/paragraph-widget";
 import UrlWidget from "../course-editor/widgets/url-widget";
@@ -6,9 +6,12 @@ import VideoYoutubeWidget from "../course-editor/widgets/video-widget";
 import ImageWidget from "../course-editor/widgets/image-widget";
 import DeleteItemDialog from "../util/delete-item-dialog";
 
-export const EditableWidget = (
+const EditableWidget = (
     {
-        widget, deleteWidget, updateWidget, preview
+        widget,
+        deleteWidget,
+        updateWidget,
+        preview
     }) => {
     const HEADING = "HEADING"
     const PARAGRAPH = "PARAGRAPH"
@@ -21,6 +24,12 @@ export const EditableWidget = (
     const [editing, setEditing] = useState(false)
     const [theWidget, setWidget] = useState(widget)
     const [deleteDialog, setDeleteDialog] = useState(false)
+
+    useEffect(() => {
+        if (!deleteDialog) {
+            setEditing(false)
+        }
+    }, [deleteDialog])
 
     const updateTheWidget = () => {
         widget = {
@@ -135,16 +144,15 @@ export const EditableWidget = (
                         }
                     })()
                 }
-
-                {
-                    deleteDialog &&
-                    <DeleteItemDialog
-                        item={widget}
-                        deleteItem={deleteWidget}
-                        openDialog={setDeleteDialog}
-                    />
-                }
             </div>
+            {
+                deleteDialog &&
+                <DeleteItemDialog
+                    item={widget}
+                    deleteItem={deleteWidget}
+                    openDialog={setDeleteDialog}
+                />
+            }
         </>
     )
 }

@@ -19,7 +19,6 @@ const ParagraphWidget = ({widget, editing, preview, setWidget}) => {
                               placeholder="paragraph goes here..."
                               onChange={(e) => setText(e.target.value)}
                               value={text} >
-                    {/*{text}*/}
                 </textarea>
                     {
                         preview &&
