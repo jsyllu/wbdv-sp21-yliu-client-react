@@ -13,7 +13,7 @@ const Footer = () =>
             </a>
         </span>
             <span class="text-muted">
-            &copy; 2021 EconStudio v0.5
+            &copy; 2021 EconStudio v0.6
         </span>
         </div>
     </footer>
