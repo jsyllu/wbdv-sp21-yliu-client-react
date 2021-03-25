@@ -40,6 +40,7 @@ const LessonTab = (
                             <EditableItem
                                 to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
                                 item={lesson}
+                                key={lesson._id}
                                 updateItem={updateLesson}
                                 deleteItem={deleteLesson}
                                 dataType='lesson'/>
