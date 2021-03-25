@@ -5,6 +5,7 @@ import UrlWidget from "../course-editor/widgets/url-widget";
 import VideoYoutubeWidget from "../course-editor/widgets/video-widget";
 import ImageWidget from "../course-editor/widgets/image-widget";
 import DeleteItemDialog from "../util/delete-item-dialog";
+import ListWidget from "../course-editor/widgets/list-widget";
 
 const EditableWidget = (
     {
@@ -18,6 +19,7 @@ const EditableWidget = (
     const URL = "URL"
     const IMAGE = "IMAGE"
     const VIDEO_YOUTUBE = "VIDEO_YOUTUBE"
+    const LIST = "LIST"
     const FILE = "FILE"
 
     const [type, setType] = useState(widget.type)
@@ -78,6 +80,7 @@ const EditableWidget = (
                                         <option value={URL}>Url</option>
                                         <option value={IMAGE}>Image</option>
                                         <option value={VIDEO_YOUTUBE}>Video Youtube</option>
+                                        <option value={LIST}>List</option>
                                         <option value={FILE}>File</option>
                                     </select>
                                     <button className="widget-delete-icon"
@@ -136,6 +139,13 @@ const EditableWidget = (
                                                  editing={editing}
                                                  preview={preview}
                                                  setWidget={setWidget} />
+                                )
+                            case LIST:
+                                return (
+                                    <ListWidget widget={widget}
+                                                editing={editing}
+                                                preview={preview}
+                                                setWidget={setWidget} />
                                 )
                             default:
                                 return (
