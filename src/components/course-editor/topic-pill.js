@@ -35,6 +35,7 @@ const TopicPill = (
                             <EditableItem
                                 to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
                                 item={topic}
+                                key={topic._id}
                                 updateItem={updateTopic}
                                 deleteItem={deleteTopic} />
                         </a>
