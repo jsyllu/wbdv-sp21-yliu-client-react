@@ -13,13 +13,19 @@ const ParagraphWidget = ({widget, editing, preview, setWidget}) => {
             {
                 editing &&
                 <>
-                    <textarea className="widget-content"
-                              cols="50"
-                              rows="5"
-                              placeholder="paragraph goes here..."
+
+                    <label className=""
+                           htmlFor="para-text">
+                        Paragraph
+                    </label>
+                    <textarea value={text}
                               onChange={(e) => setText(e.target.value)}
-                              value={text} >
-                </textarea>
+                              name=""
+                              className="widget-content"
+                              style={{height: "inherit"}}
+                              id="para-text"
+                              rows="10">
+                    </textarea>
                     {
                         preview &&
                         <hr />

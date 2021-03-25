@@ -23,12 +23,22 @@ const HeadingWidget = ({widget, editing, preview, setWidget}) => {
             {
                 editing &&
                 <>
+                    <label className=""
+                           htmlFor="header-heading">
+                        Heading
+                    </label>
                     <input className="widget-content"
+                           id="header-heading"
                            type="text"
                            value={heading}
                            onChange={(e) => setHeading(e.target.value)}
                            placeholder="new heading" />
-                    <select className="widget-type-detail-select"
+                    <label className=""
+                           htmlFor="header-size">
+                        Heading Size
+                    </label>
+                   <select className="widget-type-detail-select"
+                           id="header-size"
                             value={size}
                             onChange={(e) => setSize(parseInt(e.target.value))}>
                         <option value="1">Heading 1</option>

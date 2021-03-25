@@ -13,8 +13,13 @@ const UrlWidget = ({widget, editing, preview, setWidget}) => {
             {
                 editing &&
                 <>
+                    <label className=""
+                           htmlFor="url-url">
+                        Url
+                    </label>
                     <input type="text"
                            className="widget-content"
+                           id="url-url"
                            value={url}
                            placeholder="url"
                            onChange={(e) => setUrl(e.target.value)} />
