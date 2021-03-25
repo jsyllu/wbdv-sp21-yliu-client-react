@@ -1,5 +1,5 @@
-const TOPICS_URL = 'http://econ-studio.herokuapp.com/api/topics'
-const WIDGETS_URL = 'http://econ-studio.herokuapp.com/api/widgets'
+const TOPICS_URL = 'https://econ-studio.herokuapp.com/api/topics'
+const WIDGETS_URL = 'https://econ-studio.herokuapp.com/api/widgets'
 
 // const TOPICS_URL = 'http://localhost:8080/api/topics'
 // const WIDGETS_URL = 'http://localhost:8080/api/widgets'
