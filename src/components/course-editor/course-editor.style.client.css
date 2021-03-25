@@ -368,8 +368,15 @@ Widget Group
     margin-bottom: 1.5rem;
 }
 .widget h1,
-.widget h2{
+.widget h2,
+.widget h3,
+.widget h4,
+.widget h5,
+.widget p,
+.widget ul,
+.widget ol{
     text-align: left!important;
+    margin: 0;
 }
 .widget-content,
 .widget-name{
