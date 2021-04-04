@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import {Link} from "react-router-dom";
-import DeleteItemDialog from "../util/delete-item-dialog";
+import {Link} from "react-router-dom"
+import DeleteItemDialog from "../util/delete-item-dialog"
 
 const CourseRow = ({course, deleteCourse, updateCourse}) => {
     const [editing, setEditing] = useState(false)
