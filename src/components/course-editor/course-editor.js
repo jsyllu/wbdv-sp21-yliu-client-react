@@ -1,18 +1,18 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react';
-import {Link, useParams} from "react-router-dom";
-import {combineReducers, createStore} from "redux";
-import {Provider} from "react-redux";
-import Helmet from "react-helmet";
-import './course-editor.style.client.css';
-import moduleReducer from '../../reducers/module-reducer';
-import lessonReducer from "../../reducers/lesson-reducer";
-import topicReducer from "../../reducers/topic-reducer";
-import widgetReducer from "../../reducers/widget-reducer";
-import ModuleList from './module-list';
-import LessonTab from "./lesson-tab";
-import TopicPill from "./topic-pill";
-import WidgetList from "./widget-list";
-import courseService from "../../services/course-service";
+import React, {useEffect, useState} from 'react'
+import {Link, useParams} from "react-router-dom"
+import {combineReducers, createStore} from "redux"
+import {Provider} from "react-redux"
+import Helmet from "react-helmet"
+import './course-editor.style.client.css'
+import moduleReducer from '../../reducers/module-reducer'
+import lessonReducer from "../../reducers/lesson-reducer"
+import topicReducer from "../../reducers/topic-reducer"
+import widgetReducer from "../../reducers/widget-reducer"
+import ModuleList from './module-list'
+import LessonTab from "./lesson-tab"
+import TopicPill from "./topic-pill"
+import WidgetList from "./widget-list"
+import courseService from "../../services/course-service"
 
 const reducers = combineReducers({
     moduleReducer,
@@ -181,6 +181,11 @@ const CourseEditor = () => {
                                                             <i className="fas fa-pencil-alt fa-sm"></i>
                                                         </button>
                                                     </p>
+                                                    <Link to={`/courses/${courseId}/quizzes`}>
+                                                        <button className="btn btn-outline-primary">
+                                                            Quiz
+                                                        </button>
+                                                    </Link>
                                                 </>
                                             }
                                         </>
