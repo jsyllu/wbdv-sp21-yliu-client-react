@@ -1,0 +1,13 @@
+.questions-list {
+    margin: 1rem auto;
+    display: block;
+    color: var(--color-font-dark);
+    padding: 3rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0.3rem 0.3rem 0.75rem rgba(0, 0, 0, .15);
+}
+
+.question-card-group {
+    margin: auto;
+    padding: 1rem;
+}
