@@ -1,14 +1,18 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-const QuestionTypeTrueFalse = ({qid, setAnswer, correctAnswer, correct}) => {
-    const ANSWER_TRUE = 'true'
-    const ANSWER_FALSE = 'false'
-    const choices = [ANSWER_TRUE, ANSWER_FALSE]
-    const [ans, setAns] = useState('')
+const QuestionTypeMultipleChoice = (
+    {
+        qid,
+        choices,
+        updateAnswer,
+        index,
+        answer,
+        correctAnswer,
+        viewMode
+    }) => {
 
-    const setTheAnswer = (ans) => {
-        setAns(ans)
-        setAnswer(ans)
+    const updateTheAnswer = (choice) => {
+        updateAnswer(index, choice)
     }
 
     return (
@@ -17,25 +21,25 @@ const QuestionTypeTrueFalse = ({qid, setAnswer, correctAnswer, correct}) => {
                 choices.map((choice, index) => {
                     return (
                         <div className={`question-choices-group-item 
-                            ${correct === null ? '' :
+                            ${!viewMode ? '' :
                             correctAnswer === choice ? 'selected-right' :
-                                ans === choice ? 'selected-wrong' : ''}`}
+                                answer === choice ? 'selected-wrong' : ''}`}
                              key={index}>
                             <input type="radio"
                                    name={qid}
-                                   id={choice}
-                                   onClick={() => setTheAnswer(choice)}
-                                   disabled={correct !== null} />
-                            <label htmlFor={choice}>
+                                   id={`${qid}-${choice}`}
+                                   onClick={() => updateTheAnswer(choice)}
+                                   disabled={viewMode} />
+                            <label htmlFor={`${qid}-${choice}`}>
                                 &nbsp;{choice}
                             </label>
                             <div className="question-grade-icon">
                                 {
-                                    correct !== null && correctAnswer === choice &&
+                                    viewMode && correctAnswer === choice &&
                                     <i className="fas fa-check"></i>
                                 }
                                 {
-                                    correct !== null && correctAnswer !== choice && ans === choice &&
+                                    viewMode && correctAnswer !== choice && answer === choice &&
                                     <i className="fas fa-times"></i>
                                 }
                             </div>
@@ -47,4 +51,4 @@ const QuestionTypeTrueFalse = ({qid, setAnswer, correctAnswer, correct}) => {
     )
 }
 
-export default QuestionTypeTrueFalse
+export default QuestionTypeMultipleChoice
