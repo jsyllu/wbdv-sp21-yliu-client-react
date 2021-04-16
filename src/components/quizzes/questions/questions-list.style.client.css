@@ -11,3 +11,26 @@
     margin: auto;
     padding: 1rem;
 }
+.questions-list .button-group {
+    margin: auto 3rem;
+    padding: 2rem 3rem;
+    width: auto;
+}
+.questions-list .button-group button{
+    margin-right: 0.5rem;
+}
+.quiz-attempt-header {
+    text-align: center;
+}
+.quiz-attempt-header hr {
+    margin-bottom: 0;
+}
+
+.quiz-attempt-list {
+    margin-left: auto;
+    margin-right: auto;
+}
+.quiz-attempt-list h3{
+    text-align: center;
+    margin-bottom: 2rem;
+}
