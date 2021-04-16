@@ -1,25 +1,21 @@
-import React, {useState} from 'react'
+import React from 'react'
 import './question-card.style.client.css'
-import QuestionTypeTrueFalse from './question-type-true-false'
-import QuestionTypeMultipleChoice from './question-type-multiple-choice'
+import QuestionTypeTrueFalse from './question-type/question-type-true-false'
+import QuestionTypeMultipleChoice from './question-type/question-type-multiple-choice'
 
 const QUESTION_TYPE_TRUE_FALSE = "TRUE_FALSE"
 const QUESTION_TYPE_MULTIPLE_CHOICE = "MULTIPLE_CHOICE"
 
-const QuestionCard = ({question}) => {
-    const [answer, setAnswer] = useState(null)
-    const [correct, setCorrect] = useState(null)
-    const [gradeBtn, setGradeBtn] = useState('Grade')
+const QuestionCard = (
+    {
+        viewMode,
+        question,
+        index,
+        updateAnswer
+    }) => {
 
-    const grade = () => {
-        setCorrect(answer === question.correct)
-        setGradeBtn('Graded')
-    }
-
-    const clearAnswer = () => {
-        setCorrect(null)
-        setGradeBtn('Grade')
-    }
+    const correct = question.correct === question.answer
+    const answer = question.answer
 
     return (
         <div className="question-card">
@@ -27,11 +23,11 @@ const QuestionCard = ({question}) => {
                 <h3>
                     {question.question}
                     {
-                        correct !== null && correct &&
+                        viewMode && correct &&
                         <i className="float-right question-check-mark fas fa-check"></i>
                     }
                     {
-                        correct !== null && !correct &&
+                        viewMode && !correct &&
                         <i className="float-right fas fa-times"></i>
                     }
                 </h3>
@@ -39,32 +35,23 @@ const QuestionCard = ({question}) => {
             {
                 question.type === QUESTION_TYPE_TRUE_FALSE &&
                 <QuestionTypeTrueFalse qid={question._id}
-                                       setAnswer={setAnswer}
+                                       updateAnswer={updateAnswer}
+                                       index={index}
+                                       answer={answer}
                                        correctAnswer={question.correct}
-                                       correct={correct} />
+                                       viewMode={viewMode} />
             }
             {
                 question.type === QUESTION_TYPE_MULTIPLE_CHOICE &&
                 <QuestionTypeMultipleChoice qid={question._id}
                                             choices={question.choices}
-                                            setAnswer={setAnswer}
+                                            updateAnswer={updateAnswer}
+                                            index={index}
+                                            answer={answer}
                                             correctAnswer={question.correct}
-                                            correct={correct} />
+                                            viewMode={viewMode} />
             }
-            <p>You answer: {answer}</p>
-            <div className="button-group">
-                <button className={`btn btn${correct === null ? '-outline' : ''}-primary`}
-                        onClick={() => {
-                            if (correct === null) grade()
-                        }}>
-                    {gradeBtn}
-                </button>
-                {
-                    correct !== null &&
-                    <button className="btn btn-outline-dark"
-                            onClick={() => clearAnswer()}>Clear</button>
-                }
-            </div>
+            <p>You answer: <u>{answer}</u></p>
         </div>
     )
 }

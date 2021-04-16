@@ -26,7 +26,9 @@
     align-content: flex-start;
     outline: 1px solid white;
 }
-
+.question-card p {
+    margin: 0;
+}
 .question-choices-group-item label {
     margin: 0;
 }
@@ -37,7 +39,4 @@
     background-color: var(--color-light);
     font-weight: 600;
     border: 2px solid var(--color-light);
-}
-.button-group button{
-    margin-right: 0.5rem;
 }
