@@ -14,13 +14,13 @@ import TopicPill from "./topic-pill"
 import WidgetList from "./widget-list"
 import courseService from "../../services/course-service"
 
-const reducers = combineReducers({
-    moduleReducer,
-    lessonReducer,
-    topicReducer,
-    widgetReducer
-})
-const store = createStore(reducers)
+// const reducers = combineReducers({
+//     moduleReducer,
+//     lessonReducer,
+//     topicReducer,
+//     widgetReducer
+// })
+// const store = createStore(reducers)
 
 const CourseEditor = () => {
     const [course, setCourse] = useState({})
@@ -80,7 +80,7 @@ const CourseEditor = () => {
             <Helmet>
                 <title>EconStudio | Course Editor</title>
             </Helmet>
-            <Provider store={store}>
+            {/*<Provider store={store}>*/}
                 <div className="editor container">
                     <h1>Course Editor</h1>
                     <div className="editor-container">
@@ -231,7 +231,7 @@ const CourseEditor = () => {
                         </div>
                     </div>
                 </div>
-            </Provider>
+            {/*</Provider>*/}
         </>
     )
 }
